@@ -1,0 +1,40 @@
+.container{
+    text-align: center;
+    padding: 20px;
+}
+
+.books-list{
+    list-style-type: none;
+    padding: 0;
+}
+
+.books-list-item{
+    margin: 10px 0;
+}
+
+.book-link{
+    text-decoration: none;
+    color: blue;
+    
+}
+
+.book-link:hover{
+    text-decoration: underline;
+}
+
+.pagination {
+    margin-top: 20px;
+}
+
+.pagination-button {
+    margin: 5px;
+    padding: 10px;
+    background-color: blue;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.pagination-button:disabled {
+    background-color: gray;
+}

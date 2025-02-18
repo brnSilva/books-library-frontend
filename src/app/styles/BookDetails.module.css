@@ -1,0 +1,33 @@
+.container {
+    text-align: center;
+    padding: 20px;
+}
+
+.ai-button {
+    margin-top: 20px;
+    margin-right: 20px;
+    padding: 10px;
+    background-color: blue;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.ai-button:disabled {
+    background-color: gray;
+}
+
+.return-button {
+    margin-top: 20px;
+    margin-right: 20px;
+    padding: 10px;
+    background-color: gray;
+    color: white;
+    border: white;
+    cursor: pointer;
+}
+
+.error {
+    color: red;
+    margin-top: 10px;
+}
