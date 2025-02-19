@@ -18,16 +18,18 @@ const BookDetails = () => {
   }, [id]);
 
   const fetchBookDetails = () =>{
-    api.get(`/books/${id}`)
-        .then(response => setBook(response.data))
-        .catch(error => console.error('Error fetching book:', error));
+
+  api.get(`/books/${id}`)
+
+      .then(response => setBook(response.data))
+      .catch(error => console.error('Error fetching book:', error));
   }
 
   const getAiInsights = () => {
     setLoading(true);
     api.get(`/books/${id}/ai-insights`)
       .then(response => {
-        
+
         setLoading(false);
         fetchBookDetails();
       })
@@ -46,7 +48,7 @@ const BookDetails = () => {
       <p>Author: {book.author}</p>
       <p>Year: {book.publicationYear}</p>
       <br/><br/>
-      {book.description && <p>Description: {book.description}</p>}
+      { book.description && <p>{book.description}</p>}
       <br/><br/>
       <button onClick={getAiInsights} className={styles['ai-button']}>
         {loading ? 'Loading AI Insights...' : 'Get AI Insights'}

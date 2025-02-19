@@ -1,9 +1,9 @@
 'use client';
 
-import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import styles from './styles/Home.module.css';
+import api from './utils/api';
 
 type Book ={
   id: number;
@@ -26,7 +26,7 @@ export default function Home() {
     const [totalPages, setTotalPages] = useState(0);
 
     useEffect(() => {
-        axios.get<Page<Book>>(`http://localhost:8080/books?page=${currentPage}&size=10&sort=title,asc`)
+        api.get<Page<Book>>(`/books?page=${currentPage}&size=10&sort=title,asc`)
             .then(response =>{
                 setBooks(response.data.content);
                 setTotalPages(response.data.totalPages);
