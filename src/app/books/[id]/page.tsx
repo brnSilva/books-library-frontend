@@ -43,20 +43,36 @@ const BookDetails = () => {
 
   return (
     <div className={styles.container}>
-      <h1>{book.title}</h1>
-      <br/>
-      <p>Author: {book.author}</p>
-      <p>Year: {book.publicationYear}</p>
-      <br/><br/>
-      { book.description && <p>{book.description}</p>}
-      <br/><br/>
-      <button onClick={getAiInsights} className={styles['ai-button']}>
-        {loading ? 'Loading AI Insights...' : 'Get AI Insights'}
-      </button>
-      <br/>
-      <button onClick={()=> router.push('/')} className={styles['return-button']}>
-        Back to Book List
-      </button>
+      <div className={styles.content}>
+        <h1 className={styles.title}>{book.title}</h1>
+        <table className={styles['books-table']}>
+          <td className={styles['books-table-left']}>
+            <tr>Author:</tr>
+            <tr>Publication Year:</tr>
+            <tr>ISBN:</tr>
+          </td>
+          <td className={styles['books-table-right']}>
+            <tr>{book.author}</tr>
+            <tr>{book.publicationYear}</tr>
+            <tr>{book.isbn}</tr>
+          </td>
+        </table>
+
+        <button onClick={getAiInsights} className={styles['ai-button']}>
+          {loading ? 'Hang Tight! AI is working its magic...' : 'Explore the Book'}
+        </button>
+
+        <div className={styles['description-container']}>
+          { book.description && <p className={styles.description}>{book.description}</p>}
+        </div>
+        
+        <div className={styles['button-container']}>
+          <button onClick={()=> router.push('/')} className={styles['return-button']}>
+            Back to Book List
+          </button>
+        </div>
+        
+      </div>
     </div>
   );
 };
