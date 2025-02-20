@@ -18,16 +18,18 @@ const BookDetails = () => {
   }, [id]);
 
   const fetchBookDetails = () =>{
-    api.get(`/books/${id}`)
-        .then(response => setBook(response.data))
-        .catch(error => console.error('Error fetching book:', error));
+
+  api.get(`/books/${id}`)
+
+      .then(response => setBook(response.data))
+      .catch(error => console.error('Error fetching book:', error));
   }
 
   const getAiInsights = () => {
     setLoading(true);
     api.get(`/books/${id}/ai-insights`)
       .then(response => {
-        
+
         setLoading(false);
         fetchBookDetails();
       })
@@ -41,20 +43,39 @@ const BookDetails = () => {
 
   return (
     <div className={styles.container}>
-      <h1>{book.title}</h1>
-      <br/>
-      <p>Author: {book.author}</p>
-      <p>Year: {book.publicationYear}</p>
-      <br/><br/>
-      {book.description && <p>Description: {book.description}</p>}
-      <br/><br/>
-      <button onClick={getAiInsights} className={styles['ai-button']}>
-        {loading ? 'Loading AI Insights...' : 'Get AI Insights'}
-      </button>
-      <br/>
-      <button onClick={()=> router.push('/')} className={styles['return-button']}>
-        Back to Book List
-      </button>
+      <div className={styles.content}>
+        <h1 className={styles.title}>{book.title}</h1>
+        <table className={styles['books-table']}>
+          <tbody>
+            <tr>
+              <td className={styles['books-table-left']}>Author:</td>
+              <td className={styles['books-table-right']}>{book.author}</td>
+            </tr>
+            <tr>
+              <td className={styles['books-table-left']}>Publication Year:</td>
+              <td className={styles['books-table-right']}>{book.publicationYear}</td>
+            </tr>
+            <tr>
+              <td className={styles['books-table-left']}>ISBN:</td>
+              <td className={styles['books-table-right']}>{book.isbn}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <button onClick={getAiInsights} className={styles['ai-button']}>
+          {loading ? 'Hang Tight! AI is working its magic...' : 'Explore the Book'}
+        </button>
+
+        <div className={styles['description-container']}>
+          {book.description && <p className={styles.description}>{book.description}</p>}
+        </div>
+        
+        <div className={styles['button-container']}>
+          <button onClick={() => router.push('/')} className={styles['return-button']}>
+            Back to Book List
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
