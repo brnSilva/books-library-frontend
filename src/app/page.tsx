@@ -57,6 +57,11 @@ export default function Home() {
     fetchBooks(searchTerm || null);
   };
 
+  const handleSearchTermChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value);
+    setCurrentPage(0);
+  };
+
   useEffect(() => {
     if (!initialLoad) {
       handleSearch();
@@ -70,7 +75,7 @@ export default function Home() {
             <input
                 type="text"
                 value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
+                onChange={handleSearchTermChange}
                 placeholder="Search by title or author"
                 className={styles['search-input']}
             />
@@ -102,31 +107,33 @@ export default function Home() {
 
 
             <div className={styles.pagination}>
-                <span>Current Page: {currentPage + 1} of {totalPages}</span>
+                <span>Current Page: {totalPages === currentPage ?
+                                                      currentPage : 
+                                                      currentPage + 1} of {totalPages}</span>
                 <button
                     onClick={() => setCurrentPage(0)}
-                    disabled={currentPage === 0}
+                    disabled={currentPage === 0 || totalPages === 0}
                     className={styles['pagination-button']}
                 >
                 First
                 </button>
                 <button
                     onClick={() => setCurrentPage(currentPage - 1)}
-                    disabled={currentPage === 0}
+                    disabled={currentPage === 0 || totalPages === 0}
                     className={styles['pagination-button']}
                 >
                 Previous
                 </button>
                 <button
                     onClick={() => setCurrentPage(currentPage + 1)}
-                    disabled={currentPage + 1 === totalPages}
+                    disabled={currentPage + 1 === totalPages || totalPages === 0}
                     className={styles['pagination-button']}
                 >
                 Next
                 </button>
                 <button
                     onClick={() => setCurrentPage(totalPages - 1)}
-                    disabled={currentPage + 1 === totalPages}
+                    disabled={currentPage + 1 === totalPages || totalPages === 0}
                     className={styles['pagination-button']}
                 >
                 Last

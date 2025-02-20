@@ -46,16 +46,20 @@ const BookDetails = () => {
       <div className={styles.content}>
         <h1 className={styles.title}>{book.title}</h1>
         <table className={styles['books-table']}>
-          <td className={styles['books-table-left']}>
-            <tr>Author:</tr>
-            <tr>Publication Year:</tr>
-            <tr>ISBN:</tr>
-          </td>
-          <td className={styles['books-table-right']}>
-            <tr>{book.author}</tr>
-            <tr>{book.publicationYear}</tr>
-            <tr>{book.isbn}</tr>
-          </td>
+          <tbody>
+            <tr>
+              <td className={styles['books-table-left']}>Author:</td>
+              <td className={styles['books-table-right']}>{book.author}</td>
+            </tr>
+            <tr>
+              <td className={styles['books-table-left']}>Publication Year:</td>
+              <td className={styles['books-table-right']}>{book.publicationYear}</td>
+            </tr>
+            <tr>
+              <td className={styles['books-table-left']}>ISBN:</td>
+              <td className={styles['books-table-right']}>{book.isbn}</td>
+            </tr>
+          </tbody>
         </table>
 
         <button onClick={getAiInsights} className={styles['ai-button']}>
@@ -63,15 +67,14 @@ const BookDetails = () => {
         </button>
 
         <div className={styles['description-container']}>
-          { book.description && <p className={styles.description}>{book.description}</p>}
+          {book.description && <p className={styles.description}>{book.description}</p>}
         </div>
         
         <div className={styles['button-container']}>
-          <button onClick={()=> router.push('/')} className={styles['return-button']}>
+          <button onClick={() => router.push('/')} className={styles['return-button']}>
             Back to Book List
           </button>
         </div>
-        
       </div>
     </div>
   );
