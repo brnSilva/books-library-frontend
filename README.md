@@ -5,6 +5,13 @@ https://github.com/brnSilva/books-library-frontend
 
 The Books Library Front-end is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`] designed to manage a customer experience with library of books. It provides a user-friendly interface to retrieve a pagination-based list of books, view book details, and request an interactive description with AI to learn more about the book and relevant story points, powered by OpenAI technology.
 
+## Run Instructions
+Clone the repository:
+
+```bash
+git clone https://github.com/brnSilva/books-library-frontend
+cd books-library-frontend
+```
 
 ## Getting Started
 
